@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+/* text-decorantion: 선으로 텍스트를 꾸밀 수 있게 해주는 속성 */
+body{
+    background-color: #fcdc29;
+}
+
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* 절대좌표 position:absoloute */
+/* 절대좌표를 쓸때는 기준태그에 relative를 준다 전제조건 */
+/* 어떠한 기준이 있어야한다.상대좌표는 원래 자신의 박스가 기준으로 처리된다. 상위태그에 위치해야함. */
+
+/* transform: 특정요소의 모양을 평면상에서 자유롭게 변형함 */
+/* transform: translate(-50%, -50%); x축 -50% y축 -50% */
+
+.mainMenu{
+    width: 250px;
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.item{
+    border-top: 1px solid #ef584a;
+    overflow: hidden;
+}
+.btn{
+    display: block;
+    padding: 15px 20px;
+    background-color: #ff6f61;
+    color: #fff;
+    position: relative;
+
+}
+.btn::before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right:8px solid transparent;
+    border-top:10px solid #ff6f61;
+    right: 15px;
+    bottom: -10px;
+    z-index: 9;
+    
+}
+
+/* before: 선택한 요소의 첫자식으로 의사요소를 하나 생성
+보통은 content속성과 함께 짝지어 요소에 장식용 컨텐츠를 추가할 때 사용 기본값은 인라인이다. */
+
+/* CSS3부터::before 구문을 도입했습니다. 그러나 브라우저는 CSS2 구문인 :before도 허용 */
+
+
+/* 블로그 참고 : 가상의 요소 :before,::after이 존재한다.
+별도의 class를 지정하지 않아도 지정된 것 처럼 요소를 선택할 수 있다. 
+::before - 실제 내용 바로 앞에서 생성되는 자식요소 ::after 실제 내용 바로 뒤에서 생성되는 자식 요소  */
+/* content="" : 가짜속성이다. html문서에 정보를 포함되지 않은 요소를 css에 새롭게 생성시켜주기 떄문 */
+
+
+
+/* 가상선택자는 꾸밈을 위해서 의미없는 태그를 더 추가해야할 때 태그 대신 가상으로 처리해 주는 css기능 */
+
+
+
+
+
+
+.btn i {
+    margin-right: 10px;
+}
+.subMenu{
+    background: #273057;
+    overflow: hidden;
+    transition: max-height 0.7s;
+    max-height: 0;
+   
+}
+
+/* transition: css속성을 변경할 때 애니메이션 속도를 조절하는 방법을 제공  */
+.subMenu a{
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    font-size: 14px;
+    border-bottom: 1px solid #394c7f;
+    position: relative;
+   
+    
+}
+/* 기준태그.subMenu a 태그로 잡음  */
+.subMenu a::before{
+    content: '';
+    opacity: 0;
+    transition: opacity 0.3s;
+
+}
+.subMenu a:hover::before{
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 6px;
+    left: 0;
+    top:0;
+    opacity: 1;
+    /* background-color: #d8d824; */
+    border-top: 24px solid transparent;
+    border-left: 11px solid #fcdc29;
+    border-bottom: 24px solid transparent;
+}
+.subMenu a::after{
+    content: '';
+    opacity: 0;
+    transition: opacity 0.3s;
+
+}
+.subMenu a:hover::after{
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 6px;
+    right: 0px;
+    top:0;
+    opacity: 1;
+  
+    border-top: 24px solid transparent;
+    border-right: 11px solid #fcdc29;
+    border-bottom: 24px solid transparent;
+}
+.subMenu a:hover{
+    background: #273057;
+    background: -moz-linear-gradient(top, #273057 0%, #273057 50%, #394c7f 51%, #394c7f 100%);
+    background: -webkit-linear-gradient(top, #273057 0%,#273057 50%,#394c7f 51%,#394c7f 100%);
+    background: linear-gradient(to bottom, #273057 0%,#273057 50%,#394c7f 51%,#394c7f 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#273057', endColorstr='#394c7f',GradientType=0 );
+    transition: all 0.3s;
+    border-bottom: 1px solid #394c7f;
+}
+
+
+/* 그라디언트 :-moz-linear-gradient */
+.subMenu a:last-child{
+    border:none;
+}
+.item:target .subMenu{
+    max-height: 10em;
+}
+
